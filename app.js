@@ -11,6 +11,7 @@ const store = {
   questions: [
     {
       questionNumber: 1,
+      image: `<img src="images/water-lilies.jpg" class="clue"`,
       question:
         "In 1899, this painting, titled: Bridge over a Pond of Water Lilies, was painted as part of a 250 oil panting series by this artist.",
       answers: [
@@ -23,6 +24,7 @@ const store = {
     },
     {
       questionNumber: 2,
+      image: `<img src="images/yellow-red-blue.jpg" class="clue"`,
       question:
         "Yellow-Red-Blue, is an abstract oil painting by this Russian painter in 1925.",
       answers: [
@@ -35,6 +37,7 @@ const store = {
     },
     {
       questionNumber: 3,
+      image: `<img src="images/memory.jpg" class="clue"`,
       question:
         "This masterpiece of surrealism was created by this Spanish painter.",
       answers: [
@@ -47,6 +50,7 @@ const store = {
     },
     {
       questionNumber: 4,
+      image: `<img src="images/cafe.jpg" class="clue"`,
       question:
         "Many say the artist of this piece, Cafe Terrace at Night, was sev-ear-ly underated.",
       answers: [
@@ -59,6 +63,7 @@ const store = {
     },
     {
       questionNumber: 5,
+      image: `<img src="images/great-wave.jpg" class="clue"`,
       question:
         "The Great Wave Off Kanagawa was the begining of this artist's 36 piece series depicting views of Mt. Fuji.",
       answers: [
@@ -94,21 +99,8 @@ const store = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
 // These functions return HTML templates
-let question1Picture = document.getElementById("question1");
-let question2Picture = document.getElementById("question2");
-let question3Picture = document.getElementById("question3");
-let question4Picture = document.getElementById("question4");
-let question5Picture = document.getElementById("question5");
-let pictures = [
-  question1Picture,
-  question2Picture,
-  question3Picture,
-  question4Picture,
-  question5Picture,
-];
+let question = store.questions[store.questionNumber];
 function generateQuestionPage() {
-  let question = store.questions[store.questionNumber];
-
   let answers = question.answers.map((answer, idx) => {
     //console.log(answer,idx);
     if (idx === 0) {
@@ -118,26 +110,14 @@ function generateQuestionPage() {
     return `<input type="radio" id="answer${idx}" name="answer" value='${answer}'>
     <label for='answer${idx}'>${answer}</label><br>`;
   });
-  if (store.questionNumber === 0) {
-    pictures[0].classList.toggle("hidden");
-  } else if (store.questionNumber === 1) {
-    pictures[1].classList.toggle("hidden");
-  } else if (store.questionNumber === 2) {
-    pictures[2].classList.toggle("hidden");
-  } else if (store.questionNumber === 3) {
-    pictures[3].classList.toggle("hidden");
-  } else if (store.questionNumber === 4) {
-    pictures[4].classList.toggle("hidden");
-  }
-  return `<img src="images/water-lilies.jpg" alt="Water Lilies" id="question1" class="hidden">
-      <img src="images/yellow-red-blue.jpg" alt="Yellow-red-blue" id="question2" class="hidden">
-      <img src="images/memory.jpg" alt="Persistence of Memory" id="question3" class="hidden">
-      <img src="images/cafe.jpg" alt="Cafe at Night" id="question4" class="hidden">
-      <img src="images/great-wave.jpg" alt="The Great Wave off Kanagawa" id="question5" class="hidden">
-  <div class='mainPage, clue'>
-  <div class='status'>Current Question: ${store.questionNumber + 1}/5</div>
+  return `${store.questions[store.questionNumber].image} <div class='mainPage'>
+  <div class="quiz-status">
+  <div class='status'>Current Question: ${
+    store.questionNumber + 1
+  } out of 5</div>
   <div class='score'>Current Score: ${store.score}</div>
-  <form id='question'>
+  </div>
+  <form id='question' class="clue">
     <h2>${question.question}</h2>
     ${answers.join("")}
     <button class='submit'>Submit Answer.</button>
@@ -146,7 +126,6 @@ function generateQuestionPage() {
 }
 
 function generateMainPage() {
-  pictures[0].classList.add("hidden");
   console.log(`generateMainPage 'ran'`);
   return `<header class="intro">
 <h2>This is</h2>
@@ -230,7 +209,6 @@ function handleStartQuiz() {
 function handleAnswerSubmit() {
   $("main").on("submit", "#question", function (event) {
     event.preventDefault();
-    pictures[store.questionNumber].classList.toggle("hidden");
     let chosenAnswer = $("input[name='answer']:checked").val();
     let correctAnswer = store.questions[store.questionNumber].correctAnswer;
     //compare against correct answer

@@ -56,11 +56,6 @@ button{
   text-align: center;
 }
 
-.radios{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
 
 .page{
   background-color: #5e00a7;
