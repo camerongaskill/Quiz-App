@@ -69,7 +69,7 @@ button{
   font-family: portd;
   font-size: 40px;
   letter-spacing: 3px;
-  font-weight: 5px;
+  font-weight: lighter;
 }
 
 .page img{
@@ -113,4 +113,11 @@ img{
 
 .end img{
   width: 100%;
+}
+
+@media all and (min-width: 600px) {
+  img{
+    height: 200px;
+    width: auto;
+  }
 }

@@ -48,7 +48,7 @@ const store = {
     {
       questionNumber: 4,
       question:
-        "Many say the artist of this piece, Café Terrace at Night, was sev-ear-ly underated.",
+        "Many say the artist of this piece, Cafe Terrace at Night, was sev-ear-ly underated.",
       answers: [
         "Who is Johannes Varmeer?",
         "Who is Rembrandt van Rijn?",
@@ -129,7 +129,12 @@ function generateQuestionPage() {
   } else if (store.questionNumber === 4) {
     pictures[4].classList.toggle("hidden");
   }
-  return `<div class='mainPage, clue'>
+  return `<img src="images/water-lilies.jpg" alt="Water Lilies" id="question1" class="hidden">
+      <img src="images/yellow-red-blue.jpg" alt="Yellow-red-blue" id="question2" class="hidden">
+      <img src="images/memory.jpg" alt="Persistence of Memory" id="question3" class="hidden">
+      <img src="images/cafe.jpg" alt="Cafe at Night" id="question4" class="hidden">
+      <img src="images/great-wave.jpg" alt="The Great Wave off Kanagawa" id="question5" class="hidden">
+  <div class='mainPage, clue'>
   <div class='status'>Current Question: ${store.questionNumber + 1}/5</div>
   <div class='score'>Current Score: ${store.score}</div>
   <form id='question'>
