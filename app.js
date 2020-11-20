@@ -234,6 +234,7 @@ function handleResetSubmit() {
   $("main").on("click", "#startOver", function () {
     store.quizStarted = false;
     store.score = 0;
+    store.incorrect = 0;
     store.questionNumber = 0;
     render();
     console.log(`handleStartQuiz 'ran'`);
