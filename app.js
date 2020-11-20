@@ -99,16 +99,19 @@ const store = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
 // These functions return HTML templates
+let question = store.questions[store.questionNumber];
 function generateQuestionPage() {
-  let answers = store.questions.answers.map((answer, idx) => {
-    //console.log(answer,idx);
-    if (idx === 0) {
-      return `<input type="radio" id="answer${idx}" name="answer" value='${answer}' required>
+  let answers = store.questions[store.questionNumber].answers.map(
+    (answer, idx) => {
+      //console.log(answer,idx);
+      if (idx === 0) {
+        return `<input type="radio" id="answer${idx}" name="answer" value='${answer}' required>
+    <label for='answer${idx}'>${answer}</label><br>`;
+      }
+      return `<input type="radio" id="answer${idx}" name="answer" value='${answer}'>
     <label for='answer${idx}'>${answer}</label><br>`;
     }
-    return `<input type="radio" id="answer${idx}" name="answer" value='${answer}'>
-    <label for='answer${idx}'>${answer}</label><br>`;
-  });
+  );
   return `${store.questions[store.questionNumber].image} <div class='mainPage'>
   <div class="quiz-status">
   <div class='status'>Current Question: ${
