@@ -99,9 +99,8 @@ const store = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
 // These functions return HTML templates
-let question = store.questions[store.questionNumber];
 function generateQuestionPage() {
-  let answers = question.answers.map((answer, idx) => {
+  let answers = store.questions.answers.map((answer, idx) => {
     //console.log(answer,idx);
     if (idx === 0) {
       return `<input type="radio" id="answer${idx}" name="answer" value='${answer}' required>
@@ -118,7 +117,7 @@ function generateQuestionPage() {
   <div class='score'>Current Score: ${store.score}</div>
   </div>
   <form id='question' class="clue">
-    <h2>${question.question}</h2>
+    <h2>${store.questions[store.questionNumber].question}</h2>
     ${answers.join("")}
     <button class='submit'>Submit Answer.</button>
     </form>
